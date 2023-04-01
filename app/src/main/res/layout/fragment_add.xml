@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="com.rose.animationpractices.view_model.state.AddMode" />
+        <variable
+            name="titleText"
+            type="androidx.databinding.ObservableField&lt;String>" />
+        <variable
+            name="descriptionText"
+            type="androidx.databinding.ObservableField&lt;String>" />
+        <variable
+            name="viewModel"
+            type="com.rose.animationpractices.view_model.AddFoodViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/food_image"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:src="@drawable/empty_image"
+                android:scaleType="centerCrop"
+                imageUri="@{viewModel.food.imageUri}"
+                error="@{@drawable/empty_image}"
+                android:clickable="@{viewModel.addMode == AddMode.EDIT}"
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/food_image" />
+
+            <EditText
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/title"
+                android:text="@={titleText}"
+                android:enabled="@{viewModel.addMode == AddMode.EDIT}"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/food_image"
+                android:importantForAutofill="no"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="300dp"
+                android:text="@={descriptionText}"
+                android:enabled="@{viewModel.addMode == AddMode.EDIT}"
+                android:hint="@string/description"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@id/title"
+                android:importantForAutofill="no"
+                android:gravity="top"
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="@{!viewModel.addState.loading()}"
+                android:text="@string/save"
+                android:visibility="@{viewModel.addMode == AddMode.EDIT ? View.VISIBLE : View.GONE}"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cancel"
+                app:layout_constraintTop_toBottomOf="@id/description"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/cancel"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/description"
+                app:layout_constraintEnd_toStartOf="@id/save" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

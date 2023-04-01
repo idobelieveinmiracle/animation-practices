@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Animation Practices</string>
+    <string name="add_button">Add button</string>
+    <string name="title_test_text">This is title that must bi less than 2 lines I tried to set it too much length</string>
+    <string name="body_test_text">This is the body that must bi less than 2 lines I tried to set it too much length but seem it stil expand</string>
+    <string name="can_not_update_error">Can not update data</string>
+    <string name="can_not_find_data">No data found</string>
+    <string name="loading_error">Error while load data</string>
+    <string name="empty_food_text">There is no food,\nclick add button to add new food</string>
+    <string name="food_image">Food image</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="data_error">Data update error</string>
+    <string name="missing_fill_field">Some fields are not filled!</string>
+    <string name="saved">Saved</string>
+</resources>
